@@ -1,12 +1,12 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
 import Product from './Product';
-import laptop1 from '../images/laptop1.jpg'
-import laptop2 from '../images/laptop2.jpg'
-import laptop3 from '../images/laptop3.png'
-import laptop4 from '../images/laptop4.png'
-const BestSelling = () => {
+import laptop1 from '../images/laptop1.jpg';
+import laptop2 from '../images/laptop2.jpg';
+import laptop3 from '../images/laptop3.png';
+import laptop4 from '../images/laptop4.png';
+
+const BestSelling = ({ showAllProducts }) => {
   const products = [
     {
       id: 1,
@@ -44,18 +44,50 @@ const BestSelling = () => {
       rating: 5,
       discount: 20,
     },
+    {
+      id: 5,
+      name: 'MacBook Pro 16',
+      image: laptop1,
+      discountPrice: 2400,
+      originalPrice: 2800,
+      rating: 5,
+      discount: 14,
+    },
+    {
+      id: 6,
+      name: 'HP Spectre x360',
+      image: laptop2,
+      discountPrice: 1500,
+      originalPrice: 1700,
+      rating: 4,
+      discount: 12,
+    },
+    {
+      id: 7,
+      name: 'Asus ROG Zephyrus',
+      image: laptop3,
+      discountPrice: 1800,
+      originalPrice: 2000,
+      rating: 4,
+      discount: 10,
+    },
+    {
+      id: 8,
+      name: 'Lenovo ThinkPad X1 Carbon',
+      image: laptop4,
+      discountPrice: 1300,
+      originalPrice: 1500,
+      rating: 5,
+      discount: 13,
+    }
   ];
 
-  // const navigate = useNavigate();
-
-  // const handleNavigate = () => {
-  //   navigate('/product-details');
-  // }
+  const displayedProducts = showAllProducts ? products : products.slice(0, 4);
 
   return (
     <div>
       <Row>
-        {products.map((product) => (
+        {displayedProducts.map((product) => (
           <Col key={product.id} xs={12} md={6} lg={3} className="mb-4">
             <Product
               image={product.image}
@@ -64,7 +96,6 @@ const BestSelling = () => {
               originalPrice={product.originalPrice}
               rating={product.rating}
               discount={product.discount}
-            // navigateCalb={handleNavigate}
             />
           </Col>
         ))}
